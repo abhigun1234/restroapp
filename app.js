@@ -8,4 +8,10 @@ const server =app.listen(port,()=>{
 app.get('/',(req,res)=>{
 res.send("hello")
 })
+app.get('/api/courses',(req,res)=>{
+    res.send([1,2,3])
+    })
+app.get('/api/courses/:id',(req,res)=>{
+    res.send(req.params.id)
+    })
 module.exports=server;

@@ -11,6 +11,10 @@ res.send("hello")
 app.get('/api/courses',(req,res)=>{
     res.send([1,2,3])
     })
+    app.get('/api/courses-details',(req,res)=>{
+        courseData=[{id:1,name:'nodejs'},{id:2,name:'mongodb'}]
+        res.send(JSON.stringify(courseData))
+        })
 app.get('/api/courses/:id',(req,res)=>{
     res.send(req.params.id)
     })

@@ -49,7 +49,10 @@ function fetchMenu() {
 
 const express = require('express')
 const app = express()
-
+app.use(express.json());
+var cors = require('cors')
+app.use(cors())
+app.options('*', cors())
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
     console.log("listning on port 3000")

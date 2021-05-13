@@ -1,11 +1,11 @@
-const mongoose = require('mongoose')
+var mongoose = require('mongoose')
 var menu
 var Menus
-// connectToDb()
-// createModel()
+connectToDb()
+createModel()
 function connectToDb(){
 
-    var uri = "mongodb://localhost/restro";
+    var uri = "mongodb://abhi:mummum%4027@cluster0-shard-00-00.szwhm.mongodb.net:27017,cluster0-shard-00-01.szwhm.mongodb.net:27017,cluster0-shard-00-02.szwhm.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-n35fii-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 mongoose.connect(uri);
 
@@ -38,6 +38,9 @@ function saveDb(){
         console.log("error",error)
     })
 }
+//find
+
+
  function fetchMenu(){
      var menuArrName=[]
    Menus.find().then(data=>{
@@ -53,7 +56,7 @@ function saveDb(){
  }
 
 //  fetchMenu()
-// saveDb()
+saveDb()
 
 module.exports.fetchMenu = fetchMenu;
 module.exports.saveDb = saveDb;

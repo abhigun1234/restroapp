@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose=require('mongoose')
 connectToDb()
+createModel()
 function connectToDb() {
 
     var uri = "mongodb://abhi:mummum%4027@cluster0-shard-00-00.szwhm.mongodb.net:27017,cluster0-shard-00-01.szwhm.mongodb.net:27017,cluster0-shard-00-02.szwhm.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-n35fii-shard-0&authSource=admin&retryWrites=true&w=majority";
@@ -12,6 +13,15 @@ function connectToDb() {
     connection.once("open", function () {
         console.log("MongoDB database connection established successfully");
     });
+
+}
+function createModel() {
+    const menuSchema = new mongoose.Schema({ name: String, price: String, Description: String, type: String })
+    // const userSchema=new mongoose.Schema({name: String, email: String, phone_no: String, message: String })
+
+    //model
+    Menus = mongoose.model('Menus', menuSchema)
+    //menu = new Menus({ name: 'chickn fry', price: 1000, Description: 'chickn', type: 'Main course' })
 
 }
 // const users =require('./login')
@@ -54,11 +64,26 @@ app.post('/adduser',(req,res)=>{
 
     user=new User ({name:req.body.name,email:req.body.email,password:req.body.password})
     user.save().then(res=>{
-
+//send mail
         console.log("res",res)
         
     }).catch(error=>{
       console.log("error",error)  
     });
     res.send(user)
+})
+app.get('/api/restro/menu', (req, res) => {
+    Menus.find(function (error, result) {
+
+        if (error) {
+            return res.json({ status: false, message: 'Db fail....', error: error })
+        }
+        else {
+            res.json({
+                status: true, message: 'Db find Success...',
+                result: result
+            })
+        }
+
+    })
 })

@@ -72,7 +72,22 @@ app.post('/adduser',(req,res)=>{
     });
     res.send(user)
 })
-app.get('/api/restro/menu', (req, res) => {
+app.get('/api/restro/users', (req, res) => {
+    User.find(function (error, result) {
+
+        if (error) {
+            return res.json({ status: false, message: 'Db fail....', error: error })
+        }
+        else {
+            res.json({
+                status: true, message: 'Db find Success...',
+                result: result
+            })
+        }
+
+    })
+})
+app.get('/api/restro/user', (req, res) => {
     Menus.find(function (error, result) {
 
         if (error) {

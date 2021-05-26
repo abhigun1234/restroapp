@@ -1,5 +1,7 @@
 const express = require('express')
 const mongoose=require('mongoose')
+const users=require('./router/register')
+const authentication=require('./router/login')
 connectToDb()
 createModel()
 function connectToDb() {
@@ -29,49 +31,15 @@ const app = express()
 app.use(express.json());
 var cors = require('cors')
 app.use(cors())
-// app.use('/api/users',users)
+app.use('/api/users',users)
+app.use('/api/auth',authentication)
 app.options('*', cors())
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
     console.log("listning on port 3000")
 })
-//creating model
-var User=mongoose.model('User',new mongoose.Schema({
-    name:{
-        type:String,
-        required:true,
-        minlength:4,
-        maxlength:50
-    },
-    email:{
 
-        type:String,
-        required:true,
-        minlength:5,
-        maxlength:255,
-        unique:true
-    },
-    password:{
 
-        type:String,
-        required:true,
-        minlength:5,
-        maxlength:255,
-        
-    }
-}))
-app.post('/adduser',(req,res)=>{
-
-    user=new User ({name:req.body.name,email:req.body.email,password:req.body.password})
-    user.save().then(res=>{
-//send mail
-        console.log("res",res)
-        
-    }).catch(error=>{
-      console.log("error",error)  
-    });
-    res.send(user)
-})
 app.get('/api/restro/users', (req, res) => {
     User.find(function (error, result) {
 

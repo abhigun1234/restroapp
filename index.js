@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose=require('mongoose')
 const users=require('./router/register')
+const demouser=require('./router/registerdemo')
 const authentication=require('./router/login')
 connectToDb()
 createModel()
@@ -32,6 +33,7 @@ app.use(express.json());
 var cors = require('cors')
 app.use(cors())
 app.use('/api/users',users)
+app.use('/api/demouser',demouser)
 app.use('/api/auth',authentication)
 app.options('*', cors())
 const port = process.env.PORT || 3000;

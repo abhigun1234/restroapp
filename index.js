@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose=require('mongoose')
 const users=require('./router/register')
+const product=require('./router/productapi')
 const demouser=require('./router/registerdemo')
 const authentication=require('./router/login')
 connectToDb()
@@ -35,6 +36,7 @@ app.use(cors())
 app.use('/api/users',users)
 app.use('/api/demouser',demouser)
 app.use('/api/auth',authentication)
+app.use('/api/addproduct',product)
 app.options('*', cors())
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
@@ -57,7 +59,7 @@ app.get('/api/restro/users', (req, res) => {
 
     })
 })
-app.get('/api/restro/user', (req, res) => {
+app.get('/api/restro/menu', (req, res) => {
     Menus.find(function (error, result) {
 
         if (error) {

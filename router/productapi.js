@@ -19,7 +19,7 @@ router.post('/', async (req, response) => {
 })
 router.get('/', (req, res) => {
     Product.find(function (error, result) {
-
+            
         if (error) {
             return res.json({ status: false, message: 'Db fail....', error: error })
         }
@@ -32,6 +32,7 @@ router.get('/', (req, res) => {
 
     })
 })
+
 
 module.exports = router;
 //hello

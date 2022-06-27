@@ -12,7 +12,7 @@ router.post('/', async (req, response) => {
     if (salt !== undefined) {
       bcrypt.hash(req.body.password, salt).then(res => {
         console.log("hashed", res)
-        user = new User({ name: req.body.name, email: req.body.email, password: res })
+        user = new User({ name: req.body.name, email: req.body.email, password: req.body.password })
         user.save().then(res => {
           console.log("res", res)
           response.json({
@@ -32,5 +32,19 @@ router.post('/', async (req, response) => {
 
 
 })
+router.get('/', (req, res) => {
+  User.find(function (error, result) {
+          
+      if (error) {
+          return res.json({ status: false, message: 'Db fail....', error: error })
+      }
+      else {
+          res.json({
+              status: true, message: 'Db find Success...',
+              result: result
+          })
+      }
 
+  })
+})
 module.exports = router;

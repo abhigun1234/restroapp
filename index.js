@@ -21,6 +21,7 @@ function connectToDb() {
 
 }
 function createModel() {
+    //
     const menuSchema = new mongoose.Schema({ name: String, price: String, Description: String, type: String })
     // const userSchema=new mongoose.Schema({name: String, email: String, phone_no: String, message: String })
 

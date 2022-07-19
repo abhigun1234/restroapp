@@ -3,7 +3,7 @@ user module is the module represents all the logged in and register user
 */
 
 const mongoose=require('mongoose')
-const course=mongoose.model('Course',new mongoose.Schema({
+const Course=mongoose.model('Course',new mongoose.Schema({
     name:{
         type:String,
         required:true,
@@ -35,4 +35,4 @@ const course=mongoose.model('Course',new mongoose.Schema({
         
     }]
 }))
-exports.Product=Product
+exports.Course=Course

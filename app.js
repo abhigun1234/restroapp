@@ -16,14 +16,6 @@ bcrypt.genSalt(10).then(res => {
 })
 
 
-
-
-
-
-
-
-
-
 // const {User}=require('./user')
 var mongoose = require('mongoose')
 var menu

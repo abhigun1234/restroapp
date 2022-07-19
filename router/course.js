@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 router.post('/', async (req, response) => {
 
     course = new Course({ name: req.body.name,
-         description:req.body.description,coursevideoUrl:req.body.coursevideoUrl })
+         description:req.body.description,courseImg:req.body.courseImg,coursevideoUrl:req.body.coursevideoUrl })
     course.save().then(res => {
       console.log("res", res)
       response.json({
@@ -19,7 +19,7 @@ router.post('/', async (req, response) => {
 
 })
 router.get('/', (req, res) => {
-    Product.find(function (error, result) {
+  Course.find(function (error, result) {
             
         if (error) {
             return res.json({ status: false, message: 'Db fail....', error: error })
